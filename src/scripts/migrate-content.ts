@@ -1,7 +1,7 @@
-import { readdir, readFile, writeFile, mkdir } from 'fs/promises';
-import { join, dirname } from 'path';
+import { format } from 'date-fns';
+import { mkdir, readdir, readFile, writeFile } from 'fs/promises';
 import matter from 'gray-matter';
-import { format, parse } from 'date-fns';
+import { dirname, join } from 'path';
 
 const OLD_CONTENT_DIR = 'old-content/blog';
 const NEW_CONTENT_DIR = 'src/content/blog/posts';
