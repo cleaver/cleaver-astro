@@ -11,7 +11,8 @@
     "format:check": "prettier --check .",
     "typecheck": "astro check && tsc --noEmit",
     "lint": "eslint . --ext .js,.ts,.astro",
-    "migrate-content": "tsx src/scripts/migrate-content.ts"
+    "migrate-content": "tsx src/scripts/migrate-content.ts",
+    "migrate-images": "tsx src/scripts/migrate-images.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
