@@ -7,6 +7,7 @@ tags:
   - Web Development
   - Drupal
   - CSS
+featured: false
 draft: false
 heroImage: /images/2014/03/hero-images/movable-type.jpg
 heroCaption: Old-fashioned typesetting typefaces

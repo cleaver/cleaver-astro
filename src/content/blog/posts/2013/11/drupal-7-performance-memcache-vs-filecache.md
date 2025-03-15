@@ -8,6 +8,7 @@ tags:
   - performance
   - filecache
   - memcache
+featured: false
 draft: false
 heroImage: /images/2013/11/hero-images/pig-racing.jpg
 heroCaption: Pigs racing

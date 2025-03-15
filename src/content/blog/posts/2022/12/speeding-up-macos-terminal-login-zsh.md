@@ -7,6 +7,7 @@ tags:
   - MacOS
   - zsh
   - performance
+featured: false
 draft: false
 heroImage: /images/2022/12/hero-images/snail.jpg
 heroCaption: Snail slowly crawls over a pencil.

@@ -10,6 +10,7 @@ tags:
   - TypeScript
   - React Native
   - notes archive
+featured: false
 draft: false
 heroImage: /images/2023/05/hero-images/yellow-lockers.jpg
 heroCaption: Close up of numbered yellow mini-lockers.

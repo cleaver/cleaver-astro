@@ -6,6 +6,7 @@ author: Cleaver Barnes
 tags:
   - Drupal 7
   - GatsbyJS
+featured: false
 draft: false
 heroImage: /images/2021/01/hero-images/static.jpg
 heroCaption: Static site

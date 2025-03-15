@@ -7,6 +7,7 @@ tags:
   - Web Development
   - Rocket Science
   - Humour
+featured: false
 draft: false
 heroImage: /images/2014/08/hero-images/rocket-science.jpg
 heroCaption: Walt Disney and Werner von Braun

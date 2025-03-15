@@ -5,6 +5,7 @@ pubDate: '2017-02-10'
 author: Cleaver Barnes
 tags:
   - Personal
+featured: false
 draft: false
 heroImage: /images/2017/02/hero-images/tangled_wires.jpg
 heroCaption: Tangled wires.

@@ -14,6 +14,8 @@ interface BlogPost {
   tags: string[];
   heroImage?: string;
   heroCaption?: string;
+  updatedDate?: Date;
+  featured: boolean;
   draft: boolean;
 }
 
@@ -38,8 +40,14 @@ async function processPost(postDir: string) {
     pubDate,
     author: data.author || 'Cleaver Barnes',
     tags: data.tags || [],
+    featured: false, // Default to false for existing posts
     draft: false
   };
+
+  // Add updatedDate if content has been updated (checking for Update section)
+  if (markdown.includes('### Update')) {
+    newPost.updatedDate = new Date(); // Set to current date since we don't have the actual update date
+  }
 
   // Handle hero image if it exists
   if (data.hero_image) {
@@ -53,11 +61,27 @@ async function processPost(postDir: string) {
     }
   }
 
-  // Create new frontmatter
-  const newFrontmatter = {
-    ...newPost,
-    pubDate: format(pubDate, 'yyyy-MM-dd')
+  // Create new frontmatter, removing undefined values
+  const newFrontmatter: Record<string, string | string[] | boolean> = {
+    title: newPost.title,
+    description: newPost.description,
+    pubDate: format(pubDate, 'yyyy-MM-dd'),
+    author: newPost.author,
+    tags: newPost.tags,
+    featured: newPost.featured,
+    draft: newPost.draft
   };
+
+  // Only add optional fields if they exist
+  if (newPost.updatedDate) {
+    newFrontmatter.updatedDate = format(newPost.updatedDate, 'yyyy-MM-dd');
+  }
+  if (newPost.heroImage) {
+    newFrontmatter.heroImage = newPost.heroImage;
+  }
+  if (newPost.heroCaption) {
+    newFrontmatter.heroCaption = newPost.heroCaption;
+  }
 
   // Create new markdown content
   const newContent = matter.stringify(markdown, newFrontmatter);

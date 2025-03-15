@@ -12,6 +12,7 @@ tags:
   - promises
   - async-await
   - opinion
+featured: false
 draft: false
 heroImage: /images/2023/04/hero-images/promise-chain.jpg
 heroCaption: Padlocks locked to a cable.

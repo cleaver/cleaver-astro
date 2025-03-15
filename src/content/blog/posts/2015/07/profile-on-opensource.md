@@ -6,6 +6,7 @@ author: Cleaver Barnes
 tags:
   - Drupal 8
   - Drupalcon
+featured: false
 draft: false
 heroImage: /images/2015/07/hero-images/opensource.png
 heroCaption: Opensource.com

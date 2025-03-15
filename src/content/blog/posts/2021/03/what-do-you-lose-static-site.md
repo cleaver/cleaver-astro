@@ -9,6 +9,7 @@ tags:
   - Drupal
   - CMS
   - Introductory
+featured: false
 draft: false
 heroImage: /images/2021/03/hero-images/subway.jpg
 heroCaption: Man descends stairs in Tokyo subway.

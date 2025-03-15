@@ -6,6 +6,7 @@ author: Cleaver Barnes
 tags:
   - Drupal 7
   - render arrays
+featured: false
 draft: false
 heroImage: /images/2013/11/hero-images/frypan.jpg
 heroCaption: Wagner Ware cast-iron frying pan - circa 1960

@@ -9,6 +9,7 @@ tags:
   - Drupal
   - CMS
   - Introductory
+featured: false
 draft: false
 heroImage: /images/2021/02/hero-images/double.jpg
 heroCaption: Two Lisbon funicular cars on sloped street.

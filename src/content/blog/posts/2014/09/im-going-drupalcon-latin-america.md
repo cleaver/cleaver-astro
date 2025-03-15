@@ -5,6 +5,7 @@ pubDate: '2014-09-10'
 author: Cleaver Barnes
 tags:
   - Drupalcon
+featured: false
 draft: false
 heroImage: /images/2014/09/hero-images/drupalcon2015.jpg
 heroCaption: Drupalcon Latin America Website

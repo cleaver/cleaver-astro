@@ -7,6 +7,7 @@ tags:
   - Web Development
   - Web Design
   - opinion
+featured: false
 draft: false
 heroImage: /images/2014/09/hero-images/image.jpg
 heroCaption: Scary carousel
