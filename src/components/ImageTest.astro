@@ -1,0 +1,30 @@
+---
+import ResponsiveImage from './ResponsiveImage.astro';
+import testImage from '../images/2023/05/hero-images/yellow-lockers.jpg';
+---
+
+<div class="image-test">
+  <h2>Hero Image Test</h2>
+  <ResponsiveImage
+    src={testImage}
+    alt="Test hero image"
+    sizes="(min-width: 1200px) 1200px, 100vw"
+    loading="eager"
+  />
+
+  <h2>Content Image Test</h2>
+  <ResponsiveImage
+    src={testImage}
+    alt="Test content image"
+    sizes="(min-width: 800px) 800px, 100vw"
+  />
+</div>
+
+<style>
+  .image-test {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+</style>
+
