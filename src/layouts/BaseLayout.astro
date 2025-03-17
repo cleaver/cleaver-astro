@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
 
 interface Props {
   title?: string;
@@ -10,8 +11,15 @@ interface Props {
   type?: 'website' | 'article';
   next?: string;
   prev?: string;
-  canonicalURL?: string;
+  canonicalURL?: URL;
+  publishDate?: Date;
+  modifiedDate?: Date;
+  author?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
 }
+
+const props = Astro.props;
 
 const {
   title = 'Cleaver Barnes',
@@ -30,41 +38,7 @@ const ogImage = image ? new URL(image, siteURL) : new URL('/og-default.png', sit
 <!doctype html>
 <html lang="en" class="h-full antialiased">
   <head>
-    <!-- Global Metadata -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-
-    <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content={type} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={ogImage} />
-
-    <!-- Navigation -->
-    {next && <link rel="next" href={next} />}
-    {prev && <link rel="prev" href={prev} />}
-
-    <!-- Sitemap -->
-    <link rel="sitemap" href="/sitemap-index.xml" />
-
-    <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+    <SEO {...props} />
   </head>
   <body
     class="flex h-full min-h-screen flex-col bg-white text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100"
