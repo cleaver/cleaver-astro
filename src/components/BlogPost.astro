@@ -5,6 +5,7 @@ import Prose from './Prose.astro';
 import TagList from './TagList.astro';
 import RelatedPosts from './RelatedPosts.astro';
 import FormattedDate from './FormattedDate.astro';
+import ReadingTime from './ReadingTime.astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -27,6 +28,7 @@ const { title, pubDate, updatedDate, heroImage, heroCaption, tags, author } = po
         )
       }
       <span>by {author}</span>
+      <ReadingTime content={post.body} />
     </div>
     {tags.length > 0 && <TagList tags={tags} />}
   </header>

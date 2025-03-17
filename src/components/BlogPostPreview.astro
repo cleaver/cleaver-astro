@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import ResponsiveImage from './ResponsiveImage.astro';
 import TagList from './TagList.astro';
 import FormattedDate from './FormattedDate.astro';
+import ReadingTime from './ReadingTime.astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -20,7 +21,10 @@ const { title, description, pubDate, heroImage, heroCaption, tags } = post.data;
           {title}
         </a>
       </h2>
-      <FormattedDate date={pubDate} class="text-sm text-gray-600 dark:text-gray-400" />
+      <div class="flex items-center gap-x-4">
+        <FormattedDate date={pubDate} class="text-sm text-gray-600 dark:text-gray-400" />
+        <ReadingTime content={post.body} class="text-sm text-gray-600 dark:text-gray-400" />
+      </div>
     </header>
     {
       heroImage && (
