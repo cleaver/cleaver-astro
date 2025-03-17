@@ -30,7 +30,7 @@ const { title, description, pubDate, heroImage, heroCaption, tags } = post.data;
   }
 
   <h2 class="text-2xl font-bold">
-    <a href={`/${post.slug}`} class="hover:text-primary transition-colors">
+    <a href={`/${post.id}`} class="hover:text-primary transition-colors">
       {title}
     </a>
   </h2>
@@ -49,5 +49,5 @@ const { title, description, pubDate, heroImage, heroCaption, tags } = post.data;
     {description}
   </p>
 
-  <a href={`/${post.slug}`} class="text-primary inline-block hover:underline"> Read more → </a>
+  <a href={`/${post.id}`} class="text-primary inline-block hover:underline"> Read more → </a>
 </article>
