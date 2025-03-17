@@ -1,0 +1,48 @@
+---
+import { Code } from 'astro:components';
+
+interface Props {
+  code: string;
+  lang: any; // Using any temporarily to get the build working
+  title?: string;
+  lineNumbers?: boolean;
+}
+
+const { code, lang = 'plaintext', title, lineNumbers = true } = Astro.props;
+---
+
+<div class="relative my-8 overflow-hidden rounded-lg bg-gray-900 dark:bg-gray-800">
+  {
+    title && (
+      <div class="border-b border-gray-700 bg-gray-800 px-4 py-2 text-sm text-gray-200 dark:bg-gray-700">
+        {title}
+      </div>
+    )
+  }
+  <div class="overflow-x-auto">
+    <Code code={code} lang={lang} theme="github-dark" wrap={false} />
+  </div>
+</div>
+
+<style>
+  /* Override Shiki's default styles for better dark mode support */
+  :global(pre) {
+    padding: 1rem !important;
+    margin: 0 !important;
+    background-color: transparent !important;
+  }
+
+  :global(pre code) {
+    counter-reset: step;
+    counter-increment: step 0;
+    font-family:
+      'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  }
+
+  /* Add line numbers if enabled */
+  :global(pre code .line) {
+    display: inline-block;
+    width: 100%;
+    padding-left: 1rem;
+  }
+</style>
