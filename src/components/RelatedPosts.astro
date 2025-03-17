@@ -1,0 +1,71 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import TagList from './TagList.astro';
+import { formatDate } from '../utils/dates';
+
+interface Props {
+  currentPost: CollectionEntry<'blog'>;
+  maxPosts?: number;
+}
+
+interface RelatedPost {
+  post: CollectionEntry<'blog'>;
+  sharedTagCount: number;
+  sharedTags: string[];
+}
+
+const { currentPost, maxPosts = 3 } = Astro.props;
+const allPosts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => !data.draft);
+
+// Calculate related posts based on shared tags
+const relatedPosts = allPosts
+  .filter((post: CollectionEntry<'blog'>) => post.id !== currentPost.id) // Exclude current post
+  .map((post: CollectionEntry<'blog'>) => {
+    const sharedTags = post.data.tags.filter((tag: string) => currentPost.data.tags.includes(tag));
+    return {
+      post,
+      sharedTagCount: sharedTags.length,
+      sharedTags
+    };
+  })
+  .filter((item: RelatedPost) => item.sharedTagCount > 0) // Only include posts with shared tags
+  .sort((a: RelatedPost, b: RelatedPost) => {
+    // Sort by number of shared tags (descending)
+    if (b.sharedTagCount !== a.sharedTagCount) {
+      return b.sharedTagCount - a.sharedTagCount;
+    }
+    // If same number of shared tags, sort by date (newest first)
+    return b.post.data.pubDate.getTime() - a.post.data.pubDate.getTime();
+  })
+  .slice(0, maxPosts);
+---
+
+{
+  relatedPosts.length > 0 && (
+    <section class="mt-12 border-t border-gray-200 pt-8 dark:border-gray-800">
+      <h2 class="mb-6 text-2xl font-bold">Related Posts</h2>
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {relatedPosts.map(({ post, sharedTags }: RelatedPost) => (
+          <article class="flex flex-col gap-2">
+            <h3 class="text-lg font-semibold">
+              <a href={`/blog/${post.slug}`} class="hover:text-primary">
+                {post.data.title}
+              </a>
+            </h3>
+            <time
+              datetime={post.data.pubDate.toISOString()}
+              class="text-sm text-gray-600 dark:text-gray-400"
+            >
+              {formatDate(post.data.pubDate)}
+            </time>
+            <p class="line-clamp-2 text-sm text-gray-700 dark:text-gray-300">
+              {post.data.description}
+            </p>
+            <TagList tags={sharedTags} class="mt-auto" />
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}

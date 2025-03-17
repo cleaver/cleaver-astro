@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import ResponsiveImage from './ResponsiveImage.astro';
 import Prose from './Prose.astro';
 import TagList from './TagList.astro';
+import RelatedPosts from './RelatedPosts.astro';
 import { formatDate } from '../utils/dates';
 
 interface Props {
@@ -69,4 +70,6 @@ const formattedUpdateDate = updatedDate ? formatDate(updatedDate) : null;
       </a>
     </div>
   </footer>
+
+  <RelatedPosts currentPost={post} />
 </article>
