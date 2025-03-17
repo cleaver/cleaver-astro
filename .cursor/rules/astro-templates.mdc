@@ -1,0 +1,25 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+<ASTRO_TEMPLATES>
+# Astro Templates
+
+- Astro templates end in a `.astro` extension.
+- The typescript code at the top of the templates is separated by three hyphens: `---`
+- Don't forget the separators!
+
+## Astro Template Structure
+
+Example: 
+
+```astro
+---
+// typescript code goes here
+---
+<div>
+  Template markup and HTML goes here.
+</div>
+```
+</ASTRO_TEMPLATES>
