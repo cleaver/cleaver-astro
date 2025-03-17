@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Important Rules
+
+* Only modify code directly relevant to the specific request. Avoid changing unrelated functionality.
