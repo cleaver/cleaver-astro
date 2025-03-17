@@ -12,6 +12,9 @@ interface Props {
 
 const { post } = Astro.props;
 const { title, description, pubDate, heroImage, heroCaption, tags } = post.data;
+
+// Extract excerpt from content before <!-- more --> divider
+const excerpt = post.body.split('<!-- more -->')[0].trim();
 ---
 
 <article class="space-y-4">
@@ -46,7 +49,7 @@ const { title, description, pubDate, heroImage, heroCaption, tags } = post.data;
   </time>
 
   <p class="text-gray-700 dark:text-gray-300">
-    {description}
+    {excerpt}
   </p>
 
   <a href={`/${post.id}`} class="text-primary inline-block hover:underline"> Read more → </a>
