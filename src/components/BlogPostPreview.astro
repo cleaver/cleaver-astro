@@ -5,6 +5,7 @@ import ResponsiveImage from './ResponsiveImage.astro';
 import TagList from './TagList.astro';
 import FormattedDate from './FormattedDate.astro';
 import ReadingTime from './ReadingTime.astro';
+import { marked } from 'marked';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -13,8 +14,13 @@ interface Props {
 const { post } = Astro.props;
 const { title, description, pubDate, heroImage, heroCaption, tags } = post.data;
 
-// Extract excerpt from content before <!-- more --> divider
-const excerpt = post.body.split('<!-- more -->')[0].trim();
+// Extract excerpt from content before <!-- more --> divider, or fall back to description
+const excerpt = post.body.includes('<!-- more -->')
+  ? post.body.split('<!-- more -->')[0].trim()
+  : description;
+
+// Process markdown in excerpt
+const processedExcerpt = marked.parse(excerpt);
 ---
 
 <article class="space-y-4">
@@ -48,9 +54,10 @@ const excerpt = post.body.split('<!-- more -->')[0].trim();
     }
   </time>
 
-  <p class="text-gray-700 dark:text-gray-300">
-    {excerpt}
-  </p>
+  <div
+    class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
+    set:html={processedExcerpt}
+  />
 
   <a href={`/${post.id}`} class="text-primary inline-block hover:underline"> Read more → </a>
 </article>
