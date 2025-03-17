@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import ResponsiveImage from './ResponsiveImage.astro';
+import ImageWithCaption from './ImageWithCaption.astro';
 import Prose from './Prose.astro';
 import TagList from './TagList.astro';
 import RelatedPosts from './RelatedPosts.astro';
@@ -35,21 +35,12 @@ const { title, pubDate, updatedDate, heroImage, heroCaption, tags, author } = po
 
   {
     heroImage && (
-      <figure class="mb-8">
-        <div class="relative aspect-[2/1] overflow-hidden rounded-lg">
-          <ResponsiveImage
-            src={heroImage}
-            alt={heroCaption || title}
-            sizes="(min-width: 1024px) 768px, 100vw"
-            class="object-cover"
-          />
-        </div>
-        {heroCaption && (
-          <figcaption class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-            {heroCaption}
-          </figcaption>
-        )}
-      </figure>
+      <ImageWithCaption
+        src={heroImage}
+        alt={heroCaption || title}
+        caption={heroCaption || ''}
+        class="relative aspect-[2/1] overflow-hidden"
+      />
     )
   }
 
