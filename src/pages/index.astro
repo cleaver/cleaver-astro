@@ -1,15 +1,71 @@
 ---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ImageTest from '../components/ImageTest.astro';
+import BlogPostPreview from '../components/BlogPostPreview.astro';
+import Pagination from '../components/Pagination.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Pagination
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const posts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => {
+    return !data.draft;
+  });
+
+  const boom = 1 / 0;
+  console.log('POSTS:', posts);
+
+  const sortedPosts = posts.sort(
+    (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+  return paginate(sortedPosts, {
+    pageSize: 5,
+    props: { posts: sortedPosts }
+  });
+}
+
+interface Props {
+  page: {
+    data: CollectionEntry<'blog'>[];
+    currentPage: number;
+    lastPage: number;
+    url: {
+      current: string;
+      next?: string;
+      prev?: string;
+    };
+  };
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { page, posts = [] } = Astro.props;
+
+// Default values if page is undefined
+const currentPage = page?.currentPage ?? 1;
+const lastPage = page?.lastPage ?? 1;
+const pageData = page?.data ?? [];
 ---
 
 <BaseLayout
-  title="Welcome to Cleaver Barnes"
+  title={currentPage === 1 ? 'Cleaver Barnes' : `Cleaver Barnes - Page ${currentPage}`}
   description="Welcome to the personal website and blog of Cleaver Barnes, where I write about web development, technology, and other topics."
   type="website"
 >
-  <ImageTest />
+  <main class="mx-auto max-w-4xl px-4 py-8">
+    <h1 class="mb-8 text-4xl font-bold">Blog Posts</h1>
+    <p>
+      POSTS:
+      {JSON.stringify(posts)}
+    </p>
+    <div class="space-y-8">
+      {pageData.map((post: CollectionEntry<'blog'>) => <BlogPostPreview post={post} />)}
+    </div>
+
+    {
+      pageData.length > 0 && (
+        <Pagination currentPage={currentPage} lastPage={lastPage} baseUrl="/" />
+      )
+    }
+  </main>
 </BaseLayout>
