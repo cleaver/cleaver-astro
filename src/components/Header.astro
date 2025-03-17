@@ -1,0 +1,33 @@
+---
+import DarkModeToggle from './DarkModeToggle.astro';
+import Navigation from './Navigation.astro';
+
+interface NavItem {
+  text: string;
+  href: string;
+}
+
+const navItems: NavItem[] = [
+  { text: 'Home', href: '/' },
+  { text: 'Blog', href: '/blog' },
+  { text: 'About', href: '/about' }
+];
+---
+
+<header
+  class="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/80"
+>
+  <div class="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4">
+    <div class="flex items-center">
+      <a href="/" class="flex items-center space-x-2">
+        <span class="text-xl font-bold text-gray-900 dark:text-white">Cleaver Barnes</span>
+      </a>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <Navigation items={navItems} />
+      <DarkModeToggle />
+    </div>
+  </div>
+</header>
+

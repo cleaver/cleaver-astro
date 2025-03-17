@@ -1,0 +1,92 @@
+---
+interface Props {
+  items: {
+    text: string;
+    href: string;
+  }[];
+}
+
+const { items } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="hidden space-x-4 md:flex">
+  {
+    items.map(({ text, href }) => (
+      <a
+        href={href}
+        class:list={[
+          'rounded-md px-3 py-2 text-sm font-medium transition-colors',
+          currentPath === href
+            ? 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white'
+            : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
+        ]}
+        aria-current={currentPath === href ? 'page' : undefined}
+      >
+        {text}
+      </a>
+    ))
+  }
+</nav>
+
+<!-- Mobile menu button -->
+<button
+  type="button"
+  class="focus:ring-primary inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:ring-2 focus:outline-none md:hidden dark:text-gray-300 dark:hover:bg-gray-800"
+  aria-controls="mobile-menu"
+  aria-expanded="false"
+  id="mobile-menu-button"
+>
+  <span class="sr-only">Open main menu</span>
+  <svg
+    class="block h-6 w-6"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+</button>
+
+<!-- Mobile menu -->
+<div
+  class="absolute top-16 left-0 hidden w-full bg-white shadow-lg md:hidden dark:bg-gray-900"
+  id="mobile-menu"
+>
+  <div class="space-y-1 px-2 pt-2 pb-3">
+    {
+      items.map(({ text, href }) => (
+        <a
+          href={href}
+          class:list={[
+            'block rounded-md px-3 py-2 text-base font-medium',
+            currentPath === href
+              ? 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white'
+              : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
+          ]}
+          aria-current={currentPath === href ? 'page' : undefined}
+        >
+          {text}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+    mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>
+
