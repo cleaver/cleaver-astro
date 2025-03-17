@@ -1,0 +1,77 @@
+---
+interface Props {
+  prevUrl?: {
+    url: string;
+    title?: string;
+  };
+  nextUrl?: {
+    url: string;
+    title?: string;
+  };
+  class?: string;
+}
+
+const { prevUrl, nextUrl, class: className = '' } = Astro.props;
+---
+
+<nav class:list={['flex justify-between gap-8', className]} aria-label="Pagination">
+  {
+    prevUrl ? (
+      <a
+        href={prevUrl.url}
+        class="group flex flex-1 items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm transition hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:hover:border-gray-700"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <span class="flex flex-col items-start gap-0.5">
+          <span class="text-xs text-gray-500 dark:text-gray-400">Previous</span>
+          {prevUrl.title && (
+            <span class="group-hover:text-primary line-clamp-1 font-medium">{prevUrl.title}</span>
+          )}
+        </span>
+      </a>
+    ) : (
+      <div class="flex-1" />
+    )
+  }
+  {
+    nextUrl ? (
+      <a
+        href={nextUrl.url}
+        class="group flex flex-1 items-center justify-end gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm transition hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:hover:border-gray-700"
+      >
+        <span class="flex flex-col items-end gap-0.5">
+          <span class="text-xs text-gray-500 dark:text-gray-400">Next</span>
+          {nextUrl.title && (
+            <span class="group-hover:text-primary line-clamp-1 font-medium">{nextUrl.title}</span>
+          )}
+        </span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </a>
+    ) : (
+      <div class="flex-1" />
+    )
+  }
+</nav>
+
