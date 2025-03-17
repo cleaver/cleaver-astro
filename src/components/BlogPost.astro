@@ -4,7 +4,7 @@ import ResponsiveImage from './ResponsiveImage.astro';
 import Prose from './Prose.astro';
 import TagList from './TagList.astro';
 import RelatedPosts from './RelatedPosts.astro';
-import { formatDate } from '../utils/dates';
+import FormattedDate from './FormattedDate.astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -12,20 +12,18 @@ interface Props {
 
 const { post } = Astro.props;
 const { title, pubDate, updatedDate, heroImage, heroCaption, tags, author } = post.data;
-const formattedPubDate = formatDate(pubDate);
-const formattedUpdateDate = updatedDate ? formatDate(updatedDate) : null;
 ---
 
 <article class="mx-auto max-w-3xl">
   <header class="mb-8">
     <h1 class="mb-2 text-4xl font-bold">{title}</h1>
     <div class="mb-4 flex flex-wrap items-center gap-x-4 text-sm text-gray-600 dark:text-gray-400">
-      <time datetime={pubDate.toISOString()}>
-        Published {formattedPubDate}
-      </time>
+      <FormattedDate date={pubDate} />
       {
-        formattedUpdateDate && (
-          <time datetime={updatedDate.toISOString()}>(Updated {formattedUpdateDate})</time>
+        updatedDate && (
+          <span>
+            (Updated <FormattedDate date={updatedDate} />)
+          </span>
         )
       }
       <span>by {author}</span>
