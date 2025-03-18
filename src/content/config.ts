@@ -9,7 +9,7 @@ const blog = defineCollection({
     base: './src/content/blog',
     generateId: ({ entry }) => {
       const fileName = path.basename(entry, path.extname(entry));
-      return `blog/${fileName}`;
+      return `/blog/${fileName}`;
     }
   }),
   schema: blogSchema

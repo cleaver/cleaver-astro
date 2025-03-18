@@ -1,0 +1,51 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPost from '../../components/BlogPost.astro';
+import SEO from '../../components/SEO.astro';
+
+// Generate static paths for each post
+export async function getStaticPaths() {
+  const allPosts: CollectionEntry<'blog'>[] = await getCollection(
+    'blog',
+    ({ data }: CollectionEntry<'blog'>) => {
+      return !data.draft;
+    }
+  );
+
+  const sp = allPosts.map((post, index) => ({
+    params: { id: post.id },
+    props: { post,
+      nextPost: allPosts[index+1],
+      prevPost: allPosts[index-1],
+    }
+  }));
+
+  console.log('static___props:', sp.map(post=>(post.params)));
+  return sp;
+}
+
+console.log('---------------------------------');
+const { post, nextPost, prevPost } = Astro.props;
+const Content = render(post);
+const canonicalURL = new URL(post.id, Astro.site);
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  type="article"
+  image={post.data.heroImage}
+  publishDate={post.data.pubDate}
+  modifiedDate={post.data.updatedDate}
+  author={post.data.author}
+  next={nextPost ? `/${nextPost.id}` : undefined}
+  prev={prevPost ? `/${prevPost.id}` : undefined}
+  canonicalURL={canonicalURL}
+>
+  <article class="mx-auto max-w-3xl px-4 py-8">
+    <BlogPost post={post}>
+      <slot />
+    </BlogPost>
+  </article>
+</BaseLayout>
