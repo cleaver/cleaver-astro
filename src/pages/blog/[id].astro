@@ -3,6 +3,7 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
 import SEO from '../../components/SEO.astro';
+import { sortPostsByDate } from '../../utils/collections';
 
 // Generate static paths for each post
 export async function getStaticPaths() {
@@ -12,11 +13,12 @@ export async function getStaticPaths() {
       return !data.draft;
     }
   );
+  const sortedPosts = sortPostsByDate(allPosts);
 
-  return allPosts.map((post, index) => {
+  return sortedPosts.map((post, index) => {
     const postId = post.id.replace('/blog/', '');
-    const nextPost = allPosts[index + 1];
-    const prevPost = allPosts[index - 1];
+    const nextPost = sortedPosts[index + 1];
+    const prevPost = sortedPosts[index - 1];
     return {
       params: { id: postId },
       props: { post, nextPost, prevPost }

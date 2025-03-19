@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPostPreview from '../components/BlogPostPreview.astro';
 import Pagination from '../components/Pagination.astro';
+import { sortPostsByDate } from '../utils/collections';
 
 // Get all blog posts
 const posts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => {
@@ -11,10 +12,7 @@ const posts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) =>
 });
 
 // Sort posts by date
-const sortedPosts = posts.sort(
-  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
-    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const sortedPosts = sortPostsByDate(posts);
 
 // Pagination settings
 const pageSize = 5;
