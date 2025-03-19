@@ -6,12 +6,15 @@ import TagList from './TagList.astro';
 import RelatedPosts from './RelatedPosts.astro';
 import FormattedDate from './FormattedDate.astro';
 import ReadingTime from './ReadingTime.astro';
+import ArticleNavigation from './ArticleNavigation.astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;
+  prevPost?: CollectionEntry<'blog'>;
+  nextPost?: CollectionEntry<'blog'>;
 }
 
-const { post } = Astro.props;
+const { post, prevPost, nextPost } = Astro.props;
 const { title, pubDate, updatedDate, heroImage, heroCaption, tags, author } = post.data;
 const { Content } = await render(post);
 ---
@@ -55,13 +58,15 @@ const { Content } = await render(post);
         Written by {author}
       </div>
       <a
-        href="/blog"
+        href="/"
         class="rounded-lg bg-gray-100 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
       >
         ← Back to Blog
       </a>
     </div>
   </footer>
+
+  <ArticleNavigation prevPost={prevPost} nextPost={nextPost} />
 
   <RelatedPosts currentPost={post} />
 </article>

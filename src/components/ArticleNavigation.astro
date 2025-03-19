@@ -1,0 +1,68 @@
+---
+interface Props {
+  prevPost?: {
+    id: string;
+    data: {
+      title: string;
+    };
+  };
+  nextPost?: {
+    id: string;
+    data: {
+      title: string;
+    };
+  };
+}
+
+const { prevPost, nextPost } = Astro.props;
+---
+
+<nav
+  class="mt-8 flex items-center justify-between border-t border-gray-200 pt-8 dark:border-gray-800"
+  aria-label="Article navigation"
+>
+  {
+    prevPost && (
+      <a
+        href={`${prevPost.id}`}
+        class="group hover:text-primary dark:hover:text-primary flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
+      >
+        <svg
+          class="h-4 w-4 transition-transform group-hover:-translate-x-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        <span>Newer article</span>
+      </a>
+    )
+  }
+
+  {
+    nextPost && (
+      <a
+        href={`${nextPost.id}`}
+        class="group hover:text-primary dark:hover:text-primary flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
+      >
+        <span>Older article</span>
+        <svg
+          class="h-4 w-4 transition-transform group-hover:translate-x-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    )
+  }
+</nav>
