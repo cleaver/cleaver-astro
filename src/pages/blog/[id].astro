@@ -1,8 +1,7 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
-console.log("prrrooooppppssss:", Astro.props);
 import SEO from '../../components/SEO.astro';
 
 // Generate static paths for each post
@@ -14,19 +13,15 @@ export async function getStaticPaths() {
     }
   );
 
-  const sp = allPosts.map((post, index) => ({
-    params: { id: post.id },
-    props: { post,
-      nextPost: allPosts[index+1],
-      prevPost: allPosts[index-1],
-    }
-  }));
-
-  console.log('static___props:', sp.map(post=>(post.params)));
-  return sp;
+  return allPosts.map((post, index) => {
+    const postId = post.id.replace('/blog/', '');
+    return {
+      params: { id: postId },
+      props: { post, nextPost: allPosts[index + 1], prevPost: allPosts[index - 1] }
+    };
+  });
 }
 
-console.log('---------------------------------');
 const { post, nextPost, prevPost } = Astro.props;
 const Content = render(post);
 const canonicalURL = new URL(post.id, Astro.site);
