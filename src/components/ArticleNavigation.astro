@@ -26,6 +26,7 @@ const { prevPost, nextPost } = Astro.props;
       prevPost && (
         <a
           href={`${prevPost.id}`}
+          title={prevPost.data.title}
           class="group hover:text-primary dark:hover:text-primary flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
         >
           <svg
@@ -53,6 +54,7 @@ const { prevPost, nextPost } = Astro.props;
       nextPost && (
         <a
           href={`${nextPost.id}`}
+          title={nextPost.data.title}
           class="group hover:text-primary dark:hover:text-primary flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
         >
           <span>Older article</span>
