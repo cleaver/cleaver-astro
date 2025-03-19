@@ -6,6 +6,7 @@ import TagList from './TagList.astro';
 import FormattedDate from './FormattedDate.astro';
 import ReadingTime from './ReadingTime.astro';
 import { marked } from 'marked';
+import ImageWithCaption from './ImageWithCaption.astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -26,15 +27,12 @@ const processedExcerpt = marked.parse(excerpt);
 <article class="space-y-4">
   {
     heroImage && (
-      <figure class="relative aspect-video overflow-hidden rounded-lg">
-        <Image
-          src={heroImage}
-          alt={heroCaption || title}
-          width={800}
-          height={450}
-          class="h-full w-full object-cover"
-        />
-      </figure>
+      <ImageWithCaption
+        src={heroImage}
+        alt={heroCaption || title}
+        caption={heroCaption || ''}
+        class="relative aspect-video overflow-hidden rounded-lg"
+      />
     )
   }
 
