@@ -19,7 +19,7 @@ const { title, pubDate, updatedDate, heroImage, heroCaption, tags, author } = po
 const { Content } = await render(post);
 ---
 
-<article class="mx-auto max-w-3xl">
+<>
   <header class="mb-8">
     <h1 class="mb-2 text-4xl font-bold">{title}</h1>
     <div class="mb-4 flex flex-wrap items-center gap-x-4 text-sm text-gray-600 dark:text-gray-400">
@@ -69,4 +69,4 @@ const { Content } = await render(post);
   <ArticleNavigation prevPost={prevPost} nextPost={nextPost} />
 
   <RelatedPosts currentPost={post} />
-</article>
+</>
