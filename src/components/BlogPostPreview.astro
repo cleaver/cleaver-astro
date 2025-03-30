@@ -24,6 +24,12 @@ const processedExcerpt = marked.parse(excerpt);
 ---
 
 <article class="space-y-4">
+  <h2 class="text-3xl font-bold">
+    <a href={`${post.id}`} class="hover:text-primary transition-colors hover:underline">
+      {title}
+    </a>
+  </h2>
+
   {
     heroImage && (
       <ImageWithCaption
@@ -34,12 +40,6 @@ const processedExcerpt = marked.parse(excerpt);
       />
     )
   }
-
-  <h2 class="text-3xl font-bold">
-    <a href={`${post.id}`} class="hover:text-primary transition-colors hover:underline">
-      {title}
-    </a>
-  </h2>
 
   <time datetime={pubDate.toISOString()} class="text-sm text-gray-600 dark:text-gray-400">
     {
