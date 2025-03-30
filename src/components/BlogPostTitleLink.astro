@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, pubDate } = post.data;
+---
+
+<article class="space-y-4">
+  <h2 class="text-3xl font-bold">
+    <a href={`${post.id}`} class="hover:text-primary transition-colors hover:underline">
+      {title}
+    </a>
+  </h2>
+
+  <time datetime={pubDate.toISOString()} class="text-sm text-gray-600 dark:text-gray-400">
+    {
+      pubDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    }
+  </time>
+</article>

@@ -1,0 +1,63 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BlogPostTitleLink from '../../../components/BlogPostTitleLink.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import slugify from 'typescript-slugify';
+import { sortPostsByDate } from '@/utils/collections';
+
+interface Props {
+  tag: string;
+  page: {
+    currentPage: number;
+    lastPage: number;
+    total: number;
+  };
+  posts: CollectionEntry<'blog'>[];
+}
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => !data.draft);
+  const uniqueTags = Array.from(
+    new Set<string>(allPosts.flatMap((post: CollectionEntry<'blog'>) => post.data.tags))
+  );
+
+  return uniqueTags.map((tag: string) => {
+    const taggedPosts = allPosts.filter((post: CollectionEntry<'blog'>) =>
+      post.data.tags.includes(tag)
+    );
+    const sortedPosts = sortPostsByDate(taggedPosts);
+    const tagSlug = slugify(tag);
+    return {
+      params: { tag: tagSlug },
+      props: {
+        tag,
+        posts: sortedPosts
+      }
+    };
+  });
+}
+
+const { tag, posts } = Astro.props;
+const totalPosts = posts.length;
+const canonicalURL = new URL(`/tags/${tag}`, Astro.site);
+---
+
+<BaseLayout
+  title={`Posts tagged "${tag}"`}
+  description={`Articles tagged with "${tag}"`}
+  canonicalURL={canonicalURL}
+>
+  <div class="mx-auto max-w-3xl px-4 py-8">
+    <header class="mb-8">
+      <h1 class="mb-2 text-4xl font-bold">Posts tagged "{tag}"</h1>
+      <p class="text-gray-600 dark:text-gray-400">
+        {totalPosts}
+        {totalPosts === 1 ? 'post' : 'posts'} found
+      </p>
+    </header>
+
+    <div class="space-y-8">
+      {posts.map((post: CollectionEntry<'blog'>) => <BlogPostTitleLink post={post} />)}
+    </div>
+  </div>
+</BaseLayout>
