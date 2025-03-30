@@ -7,6 +7,7 @@ import FormattedDate from './FormattedDate.astro';
 import ReadingTime from './ReadingTime.astro';
 import { marked } from 'marked';
 import ImageWithCaption from './ImageWithCaption.astro';
+import { getPostExcerpt } from '../utils/collections';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -15,10 +16,8 @@ interface Props {
 const { post } = Astro.props;
 const { title, description, pubDate, heroImage, heroCaption, tags } = post.data;
 
-// Extract excerpt from content before <!-- more --> divider, or fall back to description
-const excerpt = post.body.includes('<!-- more -->')
-  ? post.body.split('<!-- more -->')[0].trim()
-  : description;
+// Get excerpt using utility function
+const excerpt = getPostExcerpt(post);
 
 // Process markdown in excerpt
 const processedExcerpt = marked.parse(excerpt);

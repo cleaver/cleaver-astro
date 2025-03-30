@@ -6,3 +6,9 @@ export function sortPostsByDate(posts: CollectionEntry<'blog'>[]): CollectionEnt
       b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
 }
+
+export function getPostExcerpt(post: CollectionEntry<'blog'>): string {
+  return post.body.includes('<!-- more -->')
+    ? post.body.split('<!-- more -->')[0].trim()
+    : post.data.description;
+}
