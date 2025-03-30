@@ -6,18 +6,15 @@ interface Props {
 
 const { date, class: className = '' } = Astro.props;
 
-// Format the date using Intl.DateTimeFormat for consistency and localization
 const formattedDate = new Intl.DateTimeFormat('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric'
 }).format(date);
 
-// Also create a machine-readable date for the datetime attribute
 const isoDate = date.toISOString();
 ---
 
 <time datetime={isoDate} class={className}>
   {formattedDate}
 </time>
-

@@ -15,7 +15,6 @@ const tagCounts = allPosts.reduce((acc: Record<string, number>, post: Collection
 // Get unique tags and sort by count (descending)
 const allTags = allPosts.flatMap((post: CollectionEntry<'blog'>) => post.data.tags);
 const uniqueTags = Array.from(new Set<string>(allTags));
-const tags = uniqueTags.sort((a: string, b: string) => (tagCounts[b] || 0) - (tagCounts[a] || 0));
 ---
 
 <BaseLayout title="Tags" description="Browse articles by tag">
@@ -26,14 +25,11 @@ const tags = uniqueTags.sort((a: string, b: string) => (tagCounts[b] || 0) - (ta
     </header>
 
     <div class="prose dark:prose-invert">
-      <p>
-        Click on a tag to see all articles with that tag. Tags are sorted by popularity (number of
-        articles).
-      </p>
+      <p>Click on a tag to see all articles with that tag.</p>
     </div>
 
     <div class="mt-8">
-      <TagList tags={tags} showCount counts={tagCounts} />
+      <TagList tags={uniqueTags} showCount counts={tagCounts} />
     </div>
   </div>
 </BaseLayout>

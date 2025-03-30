@@ -1,13 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
-import ResponsiveImage from './ResponsiveImage.astro';
-import TagList from './TagList.astro';
-import FormattedDate from './FormattedDate.astro';
-import ReadingTime from './ReadingTime.astro';
 import { marked } from 'marked';
-import ImageWithCaption from './ImageWithCaption.astro';
 import { getPostExcerpt } from '../utils/collections';
+import ImageWithCaption from './ImageWithCaption.astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;

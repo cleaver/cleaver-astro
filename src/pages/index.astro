@@ -6,20 +6,16 @@ import BlogPostPreview from '../components/BlogPostPreview.astro';
 import Pagination from '../components/Pagination.astro';
 import { sortPostsByDate } from '../utils/collections';
 
-// Get all blog posts
 const posts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => {
   return !data.draft;
 });
 
-// Sort posts by date
 const sortedPosts = sortPostsByDate(posts);
 
-// Pagination settings
 const pageSize = 5;
-const currentPage = 1; // This is the homepage, so always page 1
+const currentPage = 1;
 const lastPage = Math.ceil(sortedPosts.length / pageSize);
 
-// Get posts for current page
 const pageData = sortedPosts.slice(0, pageSize);
 ---
 

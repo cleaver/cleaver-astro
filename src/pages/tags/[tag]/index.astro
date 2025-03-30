@@ -1,9 +1,9 @@
 ---
+import { sortPostsByDate } from '@/utils/collections';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import slugify from 'typescript-slugify';
 import BlogPostTitleLink from '../../../components/BlogPostTitleLink.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import slugify from 'typescript-slugify';
-import { sortPostsByDate } from '@/utils/collections';
 
 interface Props {
   tag: string;

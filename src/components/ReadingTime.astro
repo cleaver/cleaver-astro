@@ -6,21 +6,12 @@ interface Props {
 
 const { content, class: className = '' } = Astro.props;
 
-// Calculate reading time
 function calculateReadingTime(text: string): number {
-  // Average reading speed (words per minute)
   const wordsPerMinute = 200;
-
-  // Remove HTML tags and trim whitespace
   const cleanText = text.replace(/<[^>]*>/g, '').trim();
-
-  // Count words (split by whitespace)
   const wordCount = cleanText.split(/\s+/).length;
-
-  // Calculate reading time in minutes
   const readingTime = Math.ceil(wordCount / wordsPerMinute);
 
-  // Return at least 1 minute
   return Math.max(1, readingTime);
 }
 
@@ -30,4 +21,3 @@ const minutes = calculateReadingTime(content);
 <span class={className}>
   {minutes} min read
 </span>
-

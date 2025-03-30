@@ -1,12 +1,12 @@
 ---
 import { render, type CollectionEntry } from 'astro:content';
+import ArticleNavigation from './ArticleNavigation.astro';
+import FormattedDate from './FormattedDate.astro';
 import ImageWithCaption from './ImageWithCaption.astro';
 import Prose from './Prose.astro';
-import TagList from './TagList.astro';
-import RelatedPosts from './RelatedPosts.astro';
-import FormattedDate from './FormattedDate.astro';
 import ReadingTime from './ReadingTime.astro';
-import ArticleNavigation from './ArticleNavigation.astro';
+import RelatedPosts from './RelatedPosts.astro';
+import TagList from './TagList.astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;
