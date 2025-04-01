@@ -9,7 +9,10 @@ const { contentId = 'main-content', label = 'Skip to content' } = Astro.props;
 
 <a
   href={`#${contentId}`}
-  class="bg-primary focus:ring-primary dark:bg-primary-dark dark:focus:ring-primary-dark absolute left-4 z-50 -translate-y-full rounded px-4 py-2 text-white transition-transform focus:translate-y-4 focus:ring-2 focus:ring-offset-2 focus:outline-none dark:focus:ring-offset-gray-900"
+  class="bg-primary focus:ring-primary dark:bg-primary-dark dark:focus:ring-primary-dark 
+    relative block z-50 rounded px-4 py-2 text-white 
+    transition-all focus:ring-2 focus:ring-offset-2 underline 
+    focus:outline-none dark:focus:ring-offset-gray-900"
 >
   {label}
   <span class="sr-only">(Press Enter to skip to main content)</span>
@@ -18,13 +21,15 @@ const { contentId = 'main-content', label = 'Skip to content' } = Astro.props;
 <style>
   /* Ensure the link is only hidden visually, not from screen readers */
   a:not(:focus) {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
     position: absolute;
-    white-space: nowrap;
     width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 </style>
 
