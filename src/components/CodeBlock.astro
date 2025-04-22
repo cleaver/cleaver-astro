@@ -5,10 +5,9 @@ interface Props {
   code: string;
   lang: any; // Using any temporarily to get the build working
   title?: string;
-  lineNumbers?: boolean;
 }
 
-const { code, lang = 'plaintext', title, lineNumbers = true } = Astro.props;
+const { code, lang = 'plaintext', title } = Astro.props;
 ---
 
 <div class="relative my-8 overflow-hidden rounded-lg bg-gray-900 dark:bg-gray-800">

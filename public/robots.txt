@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://cleaver.ca/sitemap-index.xml 

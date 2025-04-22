@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, description, pubDate, heroImage, heroCaption, tags } = post.data;
+const { title, pubDate, heroImage, heroCaption } = post.data;
 
 // Get excerpt using utility function
 const excerpt = getPostExcerpt(post);

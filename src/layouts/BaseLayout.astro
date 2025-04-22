@@ -4,7 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
 import SkipToContent from '../components/SkipToContent.astro';
-
+import Favicon from '../components/Favicon.astro';
 interface Props {
   title?: string;
   description?: string;
@@ -21,19 +21,6 @@ interface Props {
 }
 
 const props = Astro.props;
-
-const {
-  title = 'Cleaver Barnes',
-  description = 'Personal website and blog of Cleaver Barnes',
-  image,
-  type = 'website',
-  next,
-  prev,
-  canonicalURL = Astro.url
-} = Astro.props;
-
-const siteURL = import.meta.env.SITE || 'https://cleaver.ca';
-const ogImage = image ? new URL(image, siteURL) : new URL('/og-default.png', siteURL);
 ---
 
 <!doctype html>
@@ -44,6 +31,7 @@ const ogImage = image ? new URL(image, siteURL) : new URL('/og-default.png', sit
       const isDarkMode = localStorage.getItem('darkMode') === 'true';
       document.documentElement.classList.toggle('dark', isDarkMode);
     </script>
+    <Favicon />
   </head>
   <body
     class="flex h-full min-h-screen flex-col bg-white text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-100"
