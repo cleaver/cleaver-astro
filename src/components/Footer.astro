@@ -11,9 +11,37 @@ const footerLinks = [
 
 <footer class="mt-32 border-t border-gray-200 dark:border-gray-800">
   <div class="mx-auto max-w-screen-xl px-4 py-12">
-    <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
-      <p class="text-sm text-gray-600 dark:text-gray-400">
-        © {copyrightYears} Cleaver Barnes. All rights reserved.
+    <div class="flex items-center justify-between gap-6">
+      <p
+        xmlns:cc="http://creativecommons.org/ns#"
+        xmlns:dct="http://purl.org/dc/terms/"
+        class="flex-grow text-sm text-gray-600 dark:text-gray-400"
+      >
+        <a property="dct:title" rel="cc:attributionURL" href="https://cleaver.ca">cleaver.ca</a> ©
+        {copyrightYears} by <span property="cc:attributionName">Cleaver Barnes</span> is licensed under
+        <a
+          href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1"
+          target="_blank"
+          rel="license noopener noreferrer"
+          class="flex"
+          >CC BY-NC-SA 4.0<img
+            class="ml-1 h-6 align-text-bottom"
+            src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"
+            alt=""
+          /><img
+            class="ml-1 h-6 align-text-bottom"
+            src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"
+            alt=""
+          /><img
+            class="ml-1 h-6 align-text-bottom"
+            src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1"
+            alt=""
+          /><img
+            class="ml-1 h-6 align-text-bottom"
+            src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"
+            alt=""
+          />
+        </a>
       </p>
       <nav class="flex gap-6" aria-label="Footer navigation">
         {
