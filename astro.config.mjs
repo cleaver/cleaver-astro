@@ -7,24 +7,38 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 // https://astro.build/config
 export default defineConfig({
-    vite: {
-        plugins: [tailwindcss()]
-    },
+  vite: {
+    plugins: [tailwindcss()]
+  },
 
-    integrations: [sitemap()],
-    site: 'https://cleaver.ca',
+  integrations: [
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+      customPages: ['https://cleaver.ca/about-me'],
+      filter: (page) => {
+        // Exclude draft posts from sitemap
+        return !page.includes('/drafts/');
+      }
+    })
+  ],
+  site: 'https://cleaver.ca',
 
-    markdown: {
-        rehypePlugins: [
-            rehypeSlug,
-            [rehypeAutolinkHeadings, {
-                behavior: 'append',
-                properties: { className: ['anchor'] }
-            }]
-        ],
-        shikiConfig: {
-            theme: 'github-dark',
-            wrap: true
+  markdown: {
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'append',
+          properties: { className: ['anchor'] }
         }
+      ]
+    ],
+    shikiConfig: {
+      theme: 'github-dark',
+      wrap: true
     }
+  }
 });
