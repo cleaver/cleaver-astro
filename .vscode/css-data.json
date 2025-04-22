@@ -1,0 +1,13 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@plugin",
+      "description": "Use the @plugin directive to load a plugin."
+    },
+    {
+      "name": "@custom-variant",
+      "description": "Use @custom-variant to create a custom variant."
+    }
+  ]
+}
