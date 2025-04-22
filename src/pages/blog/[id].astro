@@ -41,7 +41,7 @@ const canonicalURL = new URL(post.id, Astro.site);
   prev={prevPost ? `/${prevPost.id}` : undefined}
   canonicalURL={canonicalURL}
 >
-  <article class="mx-auto max-w-3xl px-4 py-8">
+  <article class="mx-auto max-w-4xl px-4 py-8">
     <BlogPost post={post} prevPost={prevPost} nextPost={nextPost}>
       <slot />
     </BlogPost>
