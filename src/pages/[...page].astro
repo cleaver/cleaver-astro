@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogPostPreview from '../components/BlogPostPreview.astro';
+import Pagination from '../components/Pagination.astro';
+import { sortPostsByDate } from '../utils/collections';
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 5;
+
+  const posts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => {
+    return !data.draft;
+  });
+
+  const sortedPosts = sortPostsByDate(posts);
+
+  const lastPage = Math.ceil(sortedPosts.length / PAGE_SIZE);
+  const paths = [];
+  for (let i = 1; i <= lastPage; i++) {
+    const pageNumber = i === 1 ? '' : i.toString();
+    paths.push({
+      params: { page: pageNumber },
+      props: { pageData: sortedPosts.slice((i - 1) * PAGE_SIZE, i * PAGE_SIZE), lastPage }
+    });
+  }
+  return paths;
+}
+
+const currentPage = Astro.params.page;
+const pageData = Astro.props.pageData;
+const lastPage = Astro.props.lastPage;
+---
+
+<BaseLayout
+  title="Cleaver Barnes"
+  description="Welcome to the personal website and blog of Cleaver Barnes, where I write about web development, technology, and other topics."
+  type="website"
+>
+  <main class="mx-auto max-w-4xl px-4 py-8">
+    <h1 class="mb-8 text-4xl font-bold">Blog Posts</h1>
+    <div class="space-y-8">
+      {pageData.map((post: CollectionEntry<'blog'>) => <BlogPostPreview post={post} />)}
+    </div>
+
+    {
+      lastPage > 1 && (
+        <Pagination currentPage={Number(currentPage) || 1} lastPage={lastPage} baseUrl="/" />
+      )
+    }
+  </main>
+</BaseLayout>
