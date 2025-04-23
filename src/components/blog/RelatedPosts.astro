@@ -1,8 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
-import TagList from './TagList.astro';
-import FormattedDate from './FormattedDate.astro';
+import TagList from '@components/blog/TagList.astro';
+import FormattedDate from '@components/ui/FormattedDate.astro';
 
 interface Props {
   currentPost: CollectionEntry<'blog'>;

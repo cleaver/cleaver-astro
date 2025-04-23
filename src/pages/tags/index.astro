@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import TagList from '../../components/TagList.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import TagList from '@components/blog/TagList.astro';
 
 // Get all posts and calculate tag counts
 const allPosts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => !data.draft);

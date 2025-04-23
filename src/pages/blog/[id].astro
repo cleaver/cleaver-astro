@@ -1,8 +1,8 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import BlogPost from '../../components/BlogPost.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { sortPostsByDate } from '../../utils/collections';
+import BlogPost from '@components/blog/BlogPost.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { sortPostsByDate } from '@/utils/collections';
 
 // Generate static paths for each post
 export async function getStaticPaths() {

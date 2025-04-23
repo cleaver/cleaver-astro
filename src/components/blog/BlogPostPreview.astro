@@ -1,8 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { marked } from 'marked';
-import { getPostExcerpt } from '../utils/collections';
-import ImageWithCaption from './ImageWithCaption.astro';
+import { getPostExcerpt } from '@/utils/collections';
+import ImageWithCaption from '@components/ui/ImageWithCaption.astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;
