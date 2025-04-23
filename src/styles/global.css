@@ -25,3 +25,11 @@ body * {
   text-decoration: none;
   text-shadow: 0.25rem 0 0 var(--color-red-400-70);
 }
+
+.prose blockquote p:first-of-type::before {
+  content: none;
+}
+
+.prose blockquote p:last-of-type::after {
+  content: none;
+}
