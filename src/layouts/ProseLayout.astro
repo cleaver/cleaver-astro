@@ -2,10 +2,10 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Prose from '@components/layout/Prose.astro';
 
-interface Props {
+type Props = {
   title: string;
   description: string;
-}
+};
 
 const { title, description } = Astro.props;
 ---

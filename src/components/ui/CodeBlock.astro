@@ -1,11 +1,11 @@
 ---
 import { Code } from 'astro:components';
 
-interface Props {
+type Props = {
   code: string;
   lang: any; // Using any temporarily to get the build working
   title?: string;
-}
+};
 
 const { code, lang = 'plaintext', title } = Astro.props;
 ---

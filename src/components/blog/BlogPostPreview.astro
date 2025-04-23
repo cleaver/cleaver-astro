@@ -4,9 +4,9 @@ import { marked } from 'marked';
 import { getPostExcerpt } from '@/utils/collections';
 import ImageWithCaption from '@components/ui/ImageWithCaption.astro';
 
-interface Props {
+type Props = {
   post: CollectionEntry<'blog'>;
-}
+};
 
 const { post } = Astro.props;
 const { title, pubDate, heroImage, heroCaption } = post.data;

@@ -1,5 +1,5 @@
 ---
-interface Props {
+type Props = {
   prevPost?: {
     id: string;
     data: {
@@ -12,7 +12,7 @@ interface Props {
       title: string;
     };
   };
-}
+};
 
 const { prevPost, nextPost } = Astro.props;
 ---

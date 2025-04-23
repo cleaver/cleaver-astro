@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 
-interface Props {
+type Props = {
   post: CollectionEntry<'blog'>;
-}
+};
 
 const { post } = Astro.props;
 const { title, pubDate } = post.data;

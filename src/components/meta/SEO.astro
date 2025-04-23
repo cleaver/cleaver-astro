@@ -1,5 +1,5 @@
 ---
-interface Props {
+type Props = {
   title?: string;
   description?: string;
   image?: string;
@@ -12,7 +12,7 @@ interface Props {
   author?: string;
   noindex?: boolean;
   nofollow?: boolean;
-}
+};
 
 const {
   title = 'cleaver.ca',

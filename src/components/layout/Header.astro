@@ -2,10 +2,10 @@
 import DarkModeToggle from '@components/ui/DarkModeToggle.astro';
 import Navigation from '@components/ui/Navigation.astro';
 
-interface NavItem {
+type NavItem = {
   text: string;
   href: string;
-}
+};
 
 const navItems: NavItem[] = [
   { text: 'Blog', href: '/' },

@@ -8,11 +8,11 @@ import ReadingTime from '@components/blog/ReadingTime.astro';
 import RelatedPosts from '@components/blog/RelatedPosts.astro';
 import TagList from '@components/blog/TagList.astro';
 
-interface Props {
+type Props = {
   post: CollectionEntry<'blog'>;
   prevPost?: CollectionEntry<'blog'>;
   nextPost?: CollectionEntry<'blog'>;
-}
+};
 
 const { post, prevPost, nextPost } = Astro.props;
 const { title, pubDate, updatedDate, heroImage, heroCaption, tags, author } = post.data;

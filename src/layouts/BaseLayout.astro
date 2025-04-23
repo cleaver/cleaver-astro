@@ -5,7 +5,8 @@ import Footer from '@components/layout/Footer.astro';
 import SEO from '@components/meta/SEO.astro';
 import SkipToContent from '@components/layout/SkipToContent.astro';
 import Favicon from '@components/meta/Favicon.astro';
-interface Props {
+
+type Props = {
   title?: string;
   description?: string;
   image?: string;
@@ -18,7 +19,7 @@ interface Props {
   author?: string;
   noindex?: boolean;
   nofollow?: boolean;
-}
+};
 
 const props = Astro.props;
 ---

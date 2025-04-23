@@ -4,16 +4,16 @@ import { getCollection } from 'astro:content';
 import TagList from '@components/blog/TagList.astro';
 import FormattedDate from '@components/ui/FormattedDate.astro';
 
-interface Props {
+type Props = {
   currentPost: CollectionEntry<'blog'>;
   maxPosts?: number;
-}
+};
 
-interface RelatedPost {
+type RelatedPost = {
   post: CollectionEntry<'blog'>;
   sharedTagCount: number;
   sharedTags: string[];
-}
+};
 
 const { currentPost, maxPosts = 3 } = Astro.props;
 const allPosts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => !data.draft);

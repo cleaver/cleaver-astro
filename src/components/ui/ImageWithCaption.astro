@@ -2,14 +2,14 @@
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 
-interface Props {
+type Props = {
   src: string;
   alt: string;
   caption: string;
   width?: number;
   height?: number;
   class?: string;
-}
+};
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/images/**/*.{jpeg,jpg,png,gif}');
 const { src, alt, caption, width, height, class: className } = Astro.props;
 const imageImportFn = images[`/src${src}`];

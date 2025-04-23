@@ -1,12 +1,12 @@
 ---
 import slugify from 'typescript-slugify';
 
-interface Props {
+type Props = {
   tags: string[];
   class?: string;
   showCount?: boolean;
   counts?: Record<string, number>;
-}
+};
 
 const { tags, class: className = '', showCount = false, counts = {} } = Astro.props;
 
