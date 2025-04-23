@@ -18,7 +18,6 @@ type RelatedPost = {
 const { currentPost, maxPosts = 3 } = Astro.props;
 const allPosts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => !data.draft);
 
-// Calculate related posts based on shared tags
 const relatedPosts = allPosts
   .filter((post: CollectionEntry<'blog'>) => post.id !== currentPost.id) // Exclude current post
   .map((post: CollectionEntry<'blog'>) => {
@@ -29,13 +28,11 @@ const relatedPosts = allPosts
       sharedTags
     };
   })
-  .filter((item: RelatedPost) => item.sharedTagCount > 0) // Only include posts with shared tags
+  .filter((item: RelatedPost) => item.sharedTagCount > 0)
   .sort((a: RelatedPost, b: RelatedPost) => {
-    // Sort by number of shared tags (descending)
     if (b.sharedTagCount !== a.sharedTagCount) {
       return b.sharedTagCount - a.sharedTagCount;
     }
-    // If same number of shared tags, sort by date (newest first)
     return b.post.data.pubDate.getTime() - a.post.data.pubDate.getTime();
   })
   .slice(0, maxPosts);

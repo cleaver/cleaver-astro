@@ -10,11 +10,7 @@ type Props = {
 
 const { post } = Astro.props;
 const { title, pubDate, heroImage, heroCaption } = post.data;
-
-// Get excerpt using utility function
 const excerpt = getPostExcerpt(post);
-
-// Process markdown in excerpt
 const processedExcerpt = marked.parse(excerpt);
 ---
 
