@@ -87,6 +87,7 @@ I wanted Cursor to have an ideal starting point, so I went through a long series
 - **Attention to detail** - The requirements included details on testing, accessibility, and a lot of things that would be easy to overlook.
 - **Features** - There were a few features like Related Posts and RSS feed that I probably wouldn't have bother with if coding by hand.
 - **Speed** - Cursor was able to do large blocks of code all at once much faster than I could alone.
+- **Migration** - If I wasn't using Cursor, I would probably just manually move and edit the markdown. Cursor wrote migration scripts for me that moved files into the new locations and made any changes required.
 - **Dark mode** - Thank you AI. I wanted to add this for a long time.
 
 ### What Kinda Sucked?
