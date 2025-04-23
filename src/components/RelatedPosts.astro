@@ -49,7 +49,7 @@ const relatedPosts = allPosts
         {relatedPosts.map(({ post, sharedTags }: RelatedPost) => (
           <article class="flex flex-col gap-2">
             <h3 class="text-lg font-semibold">
-              <a href={`/blog/${post.slug}`} class="hover:text-primary">
+              <a href={`/${post.id}`} class="hover:text-primary">
                 {post.data.title}
               </a>
             </h3>
