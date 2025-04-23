@@ -3,5 +3,25 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 body * {
-    @apply transition-colors duration-300;
+  @apply transition-colors duration-300;
+}
+
+:root {
+  --color-blue-400-70: oklch(from var(--color-blue-400) l c h / 70%);
+  --color-red-400-70: oklch(from var(--color-red-400) l c h / 70%);
+}
+
+.main-heading {
+  color: var(--color-blue-400-70);
+  font-family:
+    Impact,
+    Helvetica Neue,
+    helvetica,
+    Arial,
+    sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  margin: 0;
+  text-decoration: none;
+  text-shadow: 0.25rem 0 0 var(--color-red-400-70);
 }
