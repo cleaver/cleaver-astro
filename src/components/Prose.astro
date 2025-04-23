@@ -3,7 +3,17 @@
 ---
 
 <div
-  class="prose dark:prose-invert prose-h1:font-bold prose-h1:text-xl prose-a:text-blue-800 dark:prose-a:text-blue-400 prose-a:hover:no-underline prose-img:rounded-xl"
+  class={`
+    prose 
+    dark:prose-invert 
+    prose-h1:font-bold 
+    prose-h1:text-xl 
+    prose-a:text-blue-800 
+    dark:prose-a:text-blue-400 
+    prose-a:hover:no-underline 
+    prose-img:rounded-xl 
+    max-w-4xl
+  `}
 >
   <slot />
 </div>
