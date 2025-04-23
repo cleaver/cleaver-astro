@@ -18,7 +18,7 @@ export async function getStaticPaths() {
   const lastPage = Math.ceil(sortedPosts.length / PAGE_SIZE);
   const paths = [];
   for (let i = 1; i <= lastPage; i++) {
-    const pageNumber = i === 1 ? '' : i.toString();
+    const pageNumber = i === 1 ? undefined : i.toString();
     paths.push({
       params: { page: pageNumber },
       props: { pageData: sortedPosts.slice((i - 1) * PAGE_SIZE, i * PAGE_SIZE), lastPage }
