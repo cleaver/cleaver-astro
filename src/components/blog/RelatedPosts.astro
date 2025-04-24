@@ -1,8 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
-import TagList from '@components/blog/TagList.astro';
-import FormattedDate from '@components/ui/FormattedDate.astro';
+import ArticleCard from '@components/blog/ArticleCard.astro';
 
 type Props = {
   currentPost: CollectionEntry<'blog'>;
@@ -44,21 +43,7 @@ const relatedPosts = allPosts
       <h2 class="mb-6 text-2xl font-bold">Related Posts</h2>
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {relatedPosts.map(({ post, sharedTags }: RelatedPost) => (
-          <article class="flex flex-col gap-2">
-            <h3 class="text-lg font-semibold">
-              <a href={`/${post.id}`} class="hover:text-primary">
-                {post.data.title}
-              </a>
-            </h3>
-            <FormattedDate
-              date={post.data.pubDate}
-              class="text-sm text-gray-600 dark:text-gray-400"
-            />
-            <p class="line-clamp-2 text-sm text-gray-700 dark:text-gray-300">
-              {post.data.description}
-            </p>
-            <TagList tags={sharedTags} class="mt-auto" />
-          </article>
+          <ArticleCard post={post} showExcerpt={true} showTags={true} tags={sharedTags} />
         ))}
       </div>
     </section>

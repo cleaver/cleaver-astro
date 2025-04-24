@@ -2,50 +2,22 @@
 import type { CollectionEntry } from 'astro:content';
 import { marked } from 'marked';
 import { getPostExcerpt } from '@/utils/collections';
-import ImageWithCaption from '@components/ui/ImageWithCaption.astro';
+import ArticleCard from '@components/blog/ArticleCard.astro';
 
 type Props = {
   post: CollectionEntry<'blog'>;
 };
 
 const { post } = Astro.props;
-const { title, pubDate, heroImage, heroCaption } = post.data;
 const excerpt = getPostExcerpt(post);
 const processedExcerpt = marked.parse(excerpt);
 ---
 
-<article class="space-y-4">
-  <h2 class="text-3xl font-bold">
-    <a href={`${post.id}`} class="hover:text-primary transition-colors hover:underline">
-      {title}
-    </a>
-  </h2>
+<ArticleCard post={post} showImage={true} showExcerpt={true} class="space-y-4" />
 
-  {
-    heroImage && (
-      <ImageWithCaption
-        src={heroImage}
-        alt={heroCaption || title}
-        caption={heroCaption || ''}
-        class="relative aspect-video overflow-hidden rounded-lg"
-      />
-    )
-  }
+<div
+  class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
+  set:html={processedExcerpt}
+/>
 
-  <time datetime={pubDate.toISOString()} class="text-sm text-gray-600 dark:text-gray-400">
-    {
-      pubDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })
-    }
-  </time>
-
-  <div
-    class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
-    set:html={processedExcerpt}
-  />
-
-  <a href={`${post.id}`} class="text-primary inline-block hover:underline"> Read more → </a>
-</article>
+<a href={`${post.id}`} class="text-primary inline-block hover:underline"> Read more → </a>

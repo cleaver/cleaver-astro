@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from '@components/ui/FormattedDate.astro';
+import TagList from '@components/blog/TagList.astro';
+import ImageWithCaption from '@components/ui/ImageWithCaption.astro';
+
+type Props = {
+  post: CollectionEntry<'blog'>;
+  showImage?: boolean;
+  showExcerpt?: boolean;
+  showTags?: boolean;
+  tags?: string[];
+  class?: string;
+};
+
+const {
+  post,
+  showImage = false,
+  showExcerpt = false,
+  showTags = false,
+  tags = post.data.tags,
+  class: className = ''
+} = Astro.props;
+
+const { title, pubDate, heroImage, heroCaption } = post.data;
+---
+
+<article class={`flex flex-col gap-2 ${className}`}>
+  <h2 class="text-lg font-semibold">
+    <a href={`${post.id}`} class="hover:text-primary transition-colors hover:underline">
+      {title}
+    </a>
+  </h2>
+
+  {
+    showImage && heroImage && (
+      <ImageWithCaption
+        src={heroImage}
+        alt={heroCaption || title}
+        caption={heroCaption || ''}
+        class="relative aspect-video overflow-hidden rounded-lg"
+      />
+    )
+  }
+
+  <FormattedDate date={pubDate} class="text-sm text-gray-600 dark:text-gray-400" />
+
+  {
+    showExcerpt && post.data.description && (
+      <p class="line-clamp-2 text-sm text-gray-700 dark:text-gray-300">{post.data.description}</p>
+    )
+  }
+
+  {showTags && tags.length > 0 && <TagList tags={tags} class="mt-auto" />}
+</article>
