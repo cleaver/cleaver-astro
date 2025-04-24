@@ -13,7 +13,13 @@ const excerpt = getPostExcerpt(post);
 const processedExcerpt = marked.parse(excerpt);
 ---
 
-<ArticleCard post={post} showImage={true} showExcerpt={true} class="space-y-4" />
+<ArticleCard
+  post={post}
+  showImage={true}
+  showExcerpt={true}
+  headingSize="large"
+  class="space-y-4"
+/>
 
 <div
   class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"

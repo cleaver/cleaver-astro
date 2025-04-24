@@ -10,6 +10,7 @@ type Props = {
   showExcerpt?: boolean;
   showTags?: boolean;
   tags?: string[];
+  headingSize?: 'default' | 'large';
   class?: string;
 };
 
@@ -19,6 +20,7 @@ const {
   showExcerpt = false,
   showTags = false,
   tags = post.data.tags,
+  headingSize = 'default',
   class: className = ''
 } = Astro.props;
 
@@ -26,7 +28,7 @@ const { title, pubDate, heroImage, heroCaption } = post.data;
 ---
 
 <article class={`flex flex-col gap-2 ${className}`}>
-  <h2 class="text-lg font-semibold">
+  <h2 class={`${headingSize === 'large' ? 'text-3xl' : 'text-lg'} font-semibold`}>
     <a href={`${post.id}`} class="hover:text-primary transition-colors hover:underline">
       {title}
     </a>
