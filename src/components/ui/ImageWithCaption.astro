@@ -9,9 +9,15 @@ type Props = {
   width?: number;
   height?: number;
   class?: string;
+  densities?: (number | `${number}x`)[] | undefined;
+  widths?: number[];
+  sizes?: string;
+  quality?: 'low' | 'mid' | 'high' | 'max' | number;
 };
+
+const { src, alt, caption, width, height, class: className, widths, sizes, quality } = Astro.props;
+
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/images/**/*.{jpeg,jpg,png,gif}');
-const { src, alt, caption, width, height, class: className } = Astro.props;
 const imageImportFn = images[`/src${src}`];
 if (!imageImportFn) {
   throw new Error(`Image ${src} not found`);
@@ -24,6 +30,9 @@ if (!imageImportFn) {
     alt={alt}
     width={width}
     height={height}
+    widths={widths}
+    sizes={sizes}
+    quality={quality}
     class="rounded-lg shadow-md dark:shadow-gray-800"
   />
   <figcaption class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">

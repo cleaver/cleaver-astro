@@ -44,6 +44,9 @@ const { Content } = await render(post);
         alt={heroCaption || title}
         caption={heroCaption || ''}
         class="relative aspect-[2/1] overflow-hidden"
+        widths={[640, 960, 1280, 1920]}
+        sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, (max-width: 1280px) 1280px, 1920px"
+        quality="high"
       />
     )
   }
