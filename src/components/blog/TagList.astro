@@ -1,5 +1,5 @@
 ---
-import slugify from 'typescript-slugify';
+import Tag from './Tag.astro';
 
 type Props = {
   tags: string[];
@@ -17,15 +17,7 @@ const sortedTags = [...tags].sort((a, b) => a.localeCompare(b));
   {
     sortedTags.map((tag) => (
       <li class="mb-2">
-        <a
-          href={`/tags/${slugify(tag)}`}
-          class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 transition hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
-        >
-          #{tag}
-          {showCount && counts[tag] && (
-            <span class="text-xs text-gray-500 dark:text-gray-400">({counts[tag]})</span>
-          )}
-        </a>
+        <Tag tag={tag} showCount={showCount} count={counts[tag]} />
       </li>
     ))
   }
