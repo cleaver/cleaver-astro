@@ -1,4 +1,6 @@
 ---
+import NavLink from './NavLink.astro';
+
 type Props = {
   items: {
     text: string;
@@ -13,18 +15,7 @@ const currentPath = Astro.url.pathname;
 <nav class="hidden space-x-4 md:flex">
   {
     items.map(({ text, href }) => (
-      <a
-        href={href}
-        class:list={[
-          'rounded-md px-3 py-2 text-sm font-medium transition-colors',
-          currentPath === href
-            ? 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white'
-            : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
-        ]}
-        aria-current={currentPath === href ? 'page' : undefined}
-      >
-        {text}
-      </a>
+      <NavLink href={href} text={text} isActive={currentPath === href} />
     ))
   }
 </nav>
@@ -62,18 +53,7 @@ const currentPath = Astro.url.pathname;
   <div class="space-y-1 px-2 pt-2 pb-3">
     {
       items.map(({ text, href }) => (
-        <a
-          href={href}
-          class:list={[
-            'block rounded-md px-3 py-2 text-base font-medium',
-            currentPath === href
-              ? 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white'
-              : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
-          ]}
-          aria-current={currentPath === href ? 'page' : undefined}
-        >
-          {text}
-        </a>
+        <NavLink href={href} text={text} isActive={currentPath === href} />
       ))
     }
   </div>
