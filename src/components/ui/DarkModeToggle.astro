@@ -24,14 +24,11 @@
 </button>
 
 <script>
-  // Initialize dark mode based on system preference or stored preference
   const darkModeToggle = document.getElementById('dark-mode-toggle');
   const darkModeKey = 'darkMode';
 
-  // Check for stored preference
   const storedPreference = localStorage.getItem(darkModeKey);
 
-  // If no stored preference, check system preference
   if (storedPreference === null) {
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (systemPrefersDark) {
@@ -41,10 +38,8 @@
     document.documentElement.classList.add('dark');
   }
 
-  // Toggle dark mode on button click
   darkModeToggle?.addEventListener('click', () => {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem(darkModeKey, isDark.toString());
   });
 </script>
-

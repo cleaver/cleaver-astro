@@ -3,7 +3,7 @@ import { Code } from 'astro:components';
 
 type Props = {
   code: string;
-  lang: any; // Using any temporarily to get the build working
+  lang: any;
   title?: string;
 };
 
@@ -24,7 +24,6 @@ const { code, lang = 'plaintext', title } = Astro.props;
 </div>
 
 <style>
-  /* Override Shiki's default styles for better dark mode support */
   :global(pre) {
     padding: 1rem !important;
     margin: 0 !important;
@@ -38,7 +37,6 @@ const { code, lang = 'plaintext', title } = Astro.props;
       'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   }
 
-  /* Add line numbers if enabled */
   :global(pre code .line) {
     display: inline-block;
     width: 100%;

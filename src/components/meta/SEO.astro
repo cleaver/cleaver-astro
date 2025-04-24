@@ -31,11 +31,8 @@ const {
 
 const siteURL = import.meta.env.SITE || 'https://cleaver.ca';
 const ogImage = image ? new URL(image, siteURL) : new URL('/og-default.png', siteURL);
-
-// Construct robots meta content
 const robotsContent = [noindex ? 'noindex' : 'index', nofollow ? 'nofollow' : 'follow'].join(', ');
 
-// JSON-LD structured data
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': type === 'article' ? 'BlogPosting' : 'WebPage',
