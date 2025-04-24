@@ -7,8 +7,12 @@ title: About Me
 
 _by Cleaver Barnes_
 
-I am the founder of Verge Interactive, a web development firm. I have developed web-based enterprise software for public and private sectors. My strengths include databases, data modelling and Javascript, Elixir, PHP, and Ruby. I'm a strong believer in open source software and I've been using Linux since kernel 1.2 back in 1995.
+I've done a little bit of everything from starting a software services company, working for government and private industry, contributing to open source, and freelance. I like to spend my time on what's most interesting to me rather than chasing the most lucrative technology of the day.
 
-I've contributed to open source including Drupal, releasing a handful of contributed modules and adding patches for core and conbtrib. See the details on [drupal.org](http://drupal.org/user/141272) and on [Github](https://github.com/cleaver).
+I started my career using proprietary software and platforms and that experience drove me to become more of an open source advocate. Over the years, I've be drawn towards system architecture, databases, data modeling, performance, and functional programming.
 
-For additional information, please get in touch on Linkedin: https://www.linkedin.com/in/cleaverbarnes.
+You can see some of my work at [Github](https://github.com/cleaver) and the source of this website is at https://github.com/cleaver/cleaver-astro. Let me know if you find any bugs.
+
+There's an old interview with me on [opensource.com](https://opensource.com/business/15/7/interview-cleaver-barnes-verge-interactive), if you're curious.
+
+You can reach me on Linkedin: https://www.linkedin.com/in/cleaverbarnes.
