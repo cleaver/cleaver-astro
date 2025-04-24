@@ -3,7 +3,6 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import TagList from '@components/blog/TagList.astro';
 
-// Get all posts and calculate tag counts
 const allPosts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => !data.draft);
 const tagCounts = allPosts.reduce((acc: Record<string, number>, post: CollectionEntry<'blog'>) => {
   post.data.tags.forEach((tag: string) => {
@@ -12,7 +11,6 @@ const tagCounts = allPosts.reduce((acc: Record<string, number>, post: Collection
   return acc;
 }, {});
 
-// Get unique tags and sort by count (descending)
 const allTags = allPosts.flatMap((post: CollectionEntry<'blog'>) => post.data.tags);
 const uniqueTags = Array.from(new Set<string>(allTags));
 ---
