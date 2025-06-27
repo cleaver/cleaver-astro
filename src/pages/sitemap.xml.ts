@@ -13,7 +13,7 @@ export const GET: APIRoute = async () => {
     .map((post) => {
       const lastMod = post.data.updatedDate || post.data.pubDate;
       return `<url>
-        <loc>${siteURL}/blog/${post.slug}</loc>
+        <loc>${siteURL}${post.id}</loc>
         <lastmod>${lastMod.toISOString()}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
