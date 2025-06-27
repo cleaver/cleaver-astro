@@ -11,18 +11,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [
-    sitemap({
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date(),
-      customPages: ['https://cleaver.ca/about-me'],
-      filter: (page) => {
-        // Exclude draft posts from sitemap
-        return !page.includes('/drafts/');
-      }
-    })
-  ],
+  integrations: [],
   site: 'https://cleaver.ca',
 
   markdown: {
