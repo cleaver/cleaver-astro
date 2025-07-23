@@ -44,14 +44,14 @@ const response = await client.responses.create({
 console.log(response.output_text);
 ```
 
-The conversation could be simplified to the following conversation:
+The conversation could be simplified to the following:
 
 - Me: Write a one-sentence bedtime story about the weather.
 - LLM: As the gentle rain sang lullabies against the windowpane, the sleepy world beneath its silvery mist drifted into a cozy, peaceful dream.
 
 There's no opportunity for the agent to gather any extra information, like whether the story is for a child or adult or where the user lives.
 
-Now, what about agents? The best definition I've heard is that an agent is a *while loop with tool calls*. When your agent sends the initial prompt to the LLM, it also lets the model know that there are tools available for it to complete the response. For example, it could have a geolocation service to determine where the user lives and there could be a weather service that can provide information about the current weather at the user's location. Note that the LLM doesn't call the tools, but the agent does. 
+Now, what about agents? The best definition I've heard is that an agent is a *while loop with tool calls*. When your agent sends the initial prompt to the LLM, it also lets the model know that there are tools available for it to complete the response. For example, it could have a geolocation service to determine where the user lives and there could be a weather service that can provide information about the current weather at the user's location. Note that the LLM doesn't call the tools--the agent calls the tools at the request of the LLM. 
 
 In this example, the conversation could go like this:
 
@@ -66,7 +66,7 @@ In this example, the conversation could go like this:
 - LLM: As the gentle 20ºC breeze drifted through Vancouver's twilight, the clear sky promised sweet dreams beneath a blanket of soft starlight.
 - Agent: *repeats the story from the LLM back to me*
 
-You can see that the agent calls the LLM multiple times before it responds. The exact number of times it calls the LLM is up to the LLM itself. If it asked for location but not the weather, it would have been called two times instead of three. Most importantly, the only way initiate the loop is user input.
+You can see that the agent calls the LLM multiple times before it responds. The exact number of times it calls the LLM is up to the LLM itself. If it asked for location but not the weather, it would have been called two times instead of three. Most importantly, the only way initiate the loop is user input. (The one-sentence story is an actual response from the OpenAI API.)
 
 ### MCP: Model Context Protocol
 
@@ -74,7 +74,7 @@ In 2024 Anthropic [introduced Model Context Protocol](https://www.anthropic.com/
 
 ## Why Do I Want to Trigger the Agent?
 
-I was writing a little proof of concept app to try out the new [Gemini CLI](https://gemini-cli.dev/) when it was released. I wanted to write a CLI app that would track a few to-do items and then check in with me after an interval. Here is the [initial prompt](https://github.com/cleaver/miles_dev_coach/blob/main/initial-prompt.md), in case you're curious. It wasn't quite an agent, because the loop was essentially hard coded, the LLM couldn't decide whether or not to make a tool call. However, one thing it does that goes beyond a typical agent is that there is an external trigger. I can ask it to check in with me in an hour. It will then set a timer and I get a desktop notification and it triggers the loop.
+I was writing a little proof of concept app to try out the new [Gemini CLI](https://gemini-cli.dev/) when it was released. I wanted to write a CLI app that would track a few to-do items and then check in with me after an interval. Here is the [initial prompt](https://github.com/cleaver/miles_dev_coach/blob/main/initial-prompt.md), in case you're curious. It wasn't quite an agent, because the loop was essentially hard coded, the LLM couldn't decide whether or not to make a tool call. However, one thing it did that goes beyond a typical agent is that there is an external trigger. I can ask it to check in with me in an hour. It will then set a timer and I get a desktop notification and it triggers the loop.
 
 ### Some Other Triggers We Might Want
 
@@ -83,7 +83,7 @@ I was writing a little proof of concept app to try out the new [Gemini CLI](http
 
 ## What is ATP?
 
-ATP is a standard way to tell an agent to do something. It could be sent over HTTP (basically a fancy webhook), or some other protocol--that's up to you.
+ATP is my name for a proposed standard way to tell an agent to do something. It could be sent over HTTP (basically a fancy webhook), or some other protocol--that's up to you.
 
 ### A Proposed Schema
 
@@ -105,13 +105,13 @@ Here’s the basic schema:
 - `correlation_id`: A unique ID to track this specific task as it moves through different systems.
 - `data`: The specific details of the event itself.
 
-Consider this to be version `0.1`. I expect things could change. Off the top of my head, there needs to be something to allow the agent to inform the LLM of the significance of the trigger. Telling it "jira" is probably not enough. You probably want to tell the LLM that if it's a high priority ticket and it affects production then take action.
+Consider this to be version `0.1`. I expect things could change. Off the top of my head, there needs to be something to allow the agent to inform the LLM of the significance of the trigger. Telling it "jira" is probably not enough. For example, you'd probably want to tell the LLM that if it's a high priority ticket and it affects production then take action.
 
 ## Examples
 
 ### Example 1: Triaging an Urgent Bug Report
 
-Imagine a critical production issue is reported in Jira. A webhook fires and maybe it posts a generic message to Slack, leaving it up to you to figure out what to do next.
+Let's expand a little on the Jira idea. Without something like ATP, a webhook fires and maybe it posts a generic message to Slack, leaving it up to you to figure out what to do next.
 
 With ATP, the event looks like this:
 
@@ -131,7 +131,7 @@ With ATP, the event looks like this:
 }
 ```
 
-Triggering an agent via ATP could give you a head start. Rather than just sending a notification, it could take action:
+Rather than just sending a notification, your agent could take action:
 
 1.  Analyze the `data` payload to identify the "Authentication service."
 2.  Check deployment logs for recent changes to that service.
@@ -167,3 +167,7 @@ The agent could be configured to ask the LLM for a particular stretch or exercis
 There's nothing really ground-breaking to this idea and it's surely been done in many different ways by many different people. But why not do what MCP does, in the opposite direction?
 
 If you have thoughts or you've already built something like this, please let me know on [LinkedIn](https://www.linkedin.com/in/cleaverbarnes/).
+
+### AI Use Transparency
+
+I wrote the article, but most of the JSON was generated based on my sessions with Gemini. The first example was generated, but with substantial edits by me. And yes, I've always used em-dashes.
