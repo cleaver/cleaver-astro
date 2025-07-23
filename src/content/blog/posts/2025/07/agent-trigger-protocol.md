@@ -12,7 +12,7 @@ tags:
 featured: false
 draft: false
 heroImage: /images/2025/07/hero-images/mixing-board.jpg
-heroCaption: Autumn leaves hanging on a string.
+heroCaption: Close-up of a mixing board.
 ---
 *Photo by [Alexey Ruban](https://unsplash.com/@intelligenciya) on [Unsplash](https://unsplash.com/photos/selective-focus-photo-of-dj-mixer-73o_FzZ5x-w)-*
 
