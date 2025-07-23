@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # content migration
 old-content/
+
+# breakcheck
+/comparisons
+/rules
+/snapshots
+/storage
