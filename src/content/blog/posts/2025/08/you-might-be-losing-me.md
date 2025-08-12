@@ -16,7 +16,7 @@ heroCaption: In an outdoor labyrinth.
 ---
 *Photo by [Sigmund](https://unsplash.com/@sigmund) on [Unsplash](https://unsplash.com/photos/green-grass-field-during-daytime-i2VgGp5BwJg)*
 
-*Apple's closed ecosystem might be costing them their biggest opportunity yet. What gives, Apple?*
+*In the age of AI, Apple's closed ecosystem might be costing them their biggest opportunity yet. What gives, Apple?*
 
 I've been developing software on a Mac for over 15 years and using an iPhone for a bit longer than that. From the beginning, I've found Apple devices to be great for productivity. For me, MacOS combined the familiarity of the Unix shell with a well-thought-out desktop environment. I didn't have to waste time configuring and fixing things like I did on Windows. Most things just worked. Over time, everything became better integrated between MacOS, iOS, and iPad. I grew to depend on the calendar, reminders, and contacts.
 
