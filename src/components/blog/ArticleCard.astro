@@ -1,8 +1,8 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import FormattedDate from '@components/ui/FormattedDate.astro';
 import TagList from '@components/blog/TagList.astro';
+import FormattedDate from '@components/ui/FormattedDate.astro';
 import ImageWithCaption from '@components/ui/ImageWithCaption.astro';
+import type { CollectionEntry } from 'astro:content';
 
 type Props = {
   post: CollectionEntry<'blog'>;
@@ -51,7 +51,7 @@ const { title, pubDate, heroImage, heroCaption } = post.data;
   <FormattedDate date={pubDate} class="text-sm text-gray-600 dark:text-gray-400" />
 
   {
-    showExcerpt && post.data.description && (
+    !showExcerpt && post.data.description && (
       <p class="line-clamp-2 text-sm text-gray-700 dark:text-gray-300">{post.data.description}</p>
     )
   }
