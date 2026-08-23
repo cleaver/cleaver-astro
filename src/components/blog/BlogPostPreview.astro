@@ -18,12 +18,14 @@ const processedExcerpt = marked.parse(excerpt);
   showImage={true}
   showExcerpt={true}
   headingSize="large"
-  class="space-y-4"
+  class="homepage-entry space-y-4"
 />
 
 <div
-  class="prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
+  class="homepage-excerpt prose prose-sm dark:prose-invert max-w-none text-gray-700 dark:text-gray-300"
   set:html={processedExcerpt}
 />
 
-<a href={`${post.id}`} class="text-primary inline-block hover:underline"> Read more → </a>
+<a href={`${post.id}`} class="homepage-read-more text-primary inline-block hover:underline">
+  Read more →
+</a>

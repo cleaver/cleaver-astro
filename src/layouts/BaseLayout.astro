@@ -10,6 +10,7 @@ type Props = {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   type?: 'website' | 'article';
   next?: string;
   prev?: string;
@@ -17,6 +18,7 @@ type Props = {
   publishDate?: Date;
   modifiedDate?: Date;
   author?: string;
+  tags?: string[];
   noindex?: boolean;
   nofollow?: boolean;
 };

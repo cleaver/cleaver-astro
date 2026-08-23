@@ -33,11 +33,13 @@ const canonicalURL = new URL(post.id, Astro.site);
   description={post.data.description}
   type="article"
   image={post.data.heroImage}
+  imageAlt={post.data.heroCaption || post.data.title}
   publishDate={post.data.pubDate}
   modifiedDate={post.data.updatedDate}
   author={post.data.author}
-  next={nextPost ? `/${nextPost.id}` : undefined}
-  prev={prevPost ? `/${prevPost.id}` : undefined}
+  tags={post.data.tags}
+  next={nextPost?.id}
+  prev={prevPost?.id}
   canonicalURL={canonicalURL}
 >
   <article class="mx-auto max-w-4xl px-4 py-8">

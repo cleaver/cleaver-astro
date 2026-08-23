@@ -28,7 +28,7 @@ const { title, pubDate, heroImage, heroCaption } = post.data;
 ---
 
 <article class={`flex flex-col gap-2 ${className}`}>
-  <h2 class={`${headingSize === 'large' ? 'text-3xl' : 'text-lg'} font-semibold`}>
+  <h2 class={headingSize === 'large' ? 'homepage-title' : 'text-lg font-semibold'}>
     <a href={`${post.id}`} class="hover:text-primary transition-colors hover:underline">
       {title}
     </a>
@@ -48,7 +48,10 @@ const { title, pubDate, heroImage, heroCaption } = post.data;
     )
   }
 
-  <FormattedDate date={pubDate} class="text-sm text-gray-600 dark:text-gray-400" />
+  <FormattedDate
+    date={pubDate}
+    class={headingSize === 'large' ? 'homepage-meta' : 'text-sm text-gray-600 dark:text-gray-400'}
+  />
 
   {
     !showExcerpt && post.data.description && (
