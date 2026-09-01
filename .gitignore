@@ -28,6 +28,6 @@ old-content/
 
 # breakcheck
 /comparisons
-/rules
+# /rules
 /snapshots
 /storage
