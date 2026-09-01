@@ -29,6 +29,8 @@
     "typescript-slugify": "^1.0.1"
   },
   "devDependencies": {
+    "@cleaver/breakcheck": "0.2.2",
+    "@cleaver/breakcheck-core": "0.2.2",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.25.1",
     "@tailwindcss/typography": "^0.5.16",

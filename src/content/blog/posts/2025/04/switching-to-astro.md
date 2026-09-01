@@ -8,8 +8,8 @@ tags:
   - Astro
   - GatsbyJS
   - Next
-  - Typescript
-  - Javascript
+  - TypeScript
+  - JavaScript
   - AI coding
   - Cursor
 featured: false
