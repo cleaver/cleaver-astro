@@ -6,7 +6,7 @@ pubDate: '2025-04-24'
 author: Cleaver Barnes
 tags:
   - Astro
-  - Typescript
+  - TypeScript
   - AI coding
   - Cursor
 featured: false

@@ -1,0 +1,10 @@
+/
+/about-me
+/blog/the-nephew-effect
+/blog/you-might-be-losing-me
+/blog/agent-trigger-protocol
+/blog/switching-to-astro
+/blog/promise-chain-vs-async-await
+/tags/ai
+/2
+/tags/dunning-kruger
