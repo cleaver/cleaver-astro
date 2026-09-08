@@ -9,7 +9,7 @@ type Props = {
 };
 
 const { items } = Astro.props;
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <nav class="hidden space-x-4 md:flex">

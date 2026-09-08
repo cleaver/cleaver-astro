@@ -3,11 +3,17 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Prose from '@components/layout/Prose.astro';
 
 type Props = {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
+  frontmatter?: {
+    title?: string;
+    description?: string;
+  };
 };
 
-const { title, description } = Astro.props;
+const { frontmatter, title: propTitle, description: propDescription } = Astro.props;
+const title = frontmatter?.title ?? propTitle;
+const description = frontmatter?.description ?? propDescription;
 ---
 
 <BaseLayout title={title} description={description}>
