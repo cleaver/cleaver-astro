@@ -57,7 +57,7 @@ async function validatePost(filePath: string): Promise<ValidationIssue | null> {
     blogSchema.parse(data);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      error.errors.forEach((err) => {
+      error.issues.forEach((err) => {
         issues.errors.push(`Missing or invalid ${err.path.join('.')}: ${err.message}`);
       });
     }
