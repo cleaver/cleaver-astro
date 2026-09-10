@@ -8,7 +8,7 @@ export async function GET(context: APIContext) {
   if (!context.site) {
     throw new Error('site URL is required for RSS feed');
   }
-  const blog = await getCollection('blog');
+  const blog = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => !data.draft);
   const sortedBlog = sortPostsByDate(blog);
 
   return rss({
