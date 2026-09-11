@@ -1,9 +1,11 @@
 import { sortPostsByDate, getPostExcerpt } from '@/utils/collections';
 import rss from '@astrojs/rss';
+import { getImage } from 'astro:assets';
 import type { APIContext } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
+import { getLocalImageMetadata } from '@/utils/images';
 
 function escapeHtmlAttribute(value: string): string {
   return value.replace(
@@ -27,10 +29,17 @@ async function getPostContent(post: CollectionEntry<'blog'>, site: URL): Promise
     return html;
   }
 
-  const imageURL = new URL(post.data.heroImage, site);
+  const imageMetadata = await getLocalImageMetadata(post.data.heroImage);
+  if (!imageMetadata) {
+    throw new Error(`Image ${post.data.heroImage} not found`);
+  }
+
+  const optimizedImage = await getImage({ src: imageMetadata, quality: 'high' });
+  const imageURL = new URL(optimizedImage.src, site);
+  const imageSrc = escapeHtmlAttribute(imageURL.href);
   const alt = escapeHtmlAttribute(post.data.heroCaption || post.data.title);
 
-  return `<p><img src="${imageURL}" alt="${alt}"></p>${html}`;
+  return `<p><img src="${imageSrc}" alt="${alt}"></p>${html}`;
 }
 
 export async function GET(context: APIContext) {
