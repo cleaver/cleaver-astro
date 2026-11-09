@@ -6,15 +6,19 @@ type Props = {
 };
 
 const { post } = Astro.props;
-const { title, pubDate } = post.data;
+const { title, subtitle, pubDate } = post.data;
 ---
 
 <article class="space-y-4">
-  <h2 class="text-3xl font-bold">
-    <a href={`${post.id}`} class="hover:text-primary transition-colors hover:underline">
-      {title}
-    </a>
-  </h2>
+  <div class="space-y-2">
+    <h2 class="text-3xl font-bold">
+      <a href={`${post.id}`} class="hover:text-primary transition-colors hover:underline">
+        {title}
+      </a>
+    </h2>
+
+    {subtitle && <p class="article-subtitle">{subtitle}</p>}
+  </div>
 
   <time datetime={pubDate.toISOString()} class="text-sm text-gray-600 dark:text-gray-400">
     {

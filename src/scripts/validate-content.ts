@@ -8,6 +8,7 @@ const BLOG_DIR = 'src/content/blog/posts';
 // Define schema matching the blog schema
 const blogSchema = z.object({
   title: z.string(),
+  subtitle: z.string().trim().min(1).optional(),
   description: z.string(),
   pubDate: z.string(), // We'll do manual date validation since it's stored as string in frontmatter
   author: z.string().default('Cleaver Barnes'),

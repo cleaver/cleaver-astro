@@ -161,6 +161,18 @@ body * {
   letter-spacing: -0.015em;
 }
 
+.article-subtitle {
+  max-width: 68ch;
+  color: var(--color-gray-600);
+  font-size: clamp(1.35rem, calc(1.2rem + 0.4vw), 1.5rem);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.dark .article-subtitle {
+  color: var(--color-gray-400);
+}
+
 .homepage-meta {
   color: var(--color-gray-600);
   font-size: 0.9375rem;

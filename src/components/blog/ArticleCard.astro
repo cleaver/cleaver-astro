@@ -24,7 +24,7 @@ const {
   class: className = ''
 } = Astro.props;
 
-const { title, pubDate, heroImage, heroCaption } = post.data;
+const { title, subtitle, pubDate, heroImage, heroCaption } = post.data;
 ---
 
 <article class={`flex flex-col gap-2 ${className}`}>
@@ -33,6 +33,20 @@ const { title, pubDate, heroImage, heroCaption } = post.data;
       {title}
     </a>
   </h2>
+
+  {
+    subtitle && (
+      <p
+        class={
+          headingSize === 'large'
+            ? 'article-subtitle'
+            : 'text-base leading-relaxed text-gray-600 dark:text-gray-400'
+        }
+      >
+        {subtitle}
+      </p>
+    )
+  }
 
   {
     showImage && heroImage && (
