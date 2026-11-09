@@ -46,6 +46,12 @@ end
 
 css:pre.astro-code code do: exclude
 
+-- sitemap custom-page lastmod values are generated at build time
+css:url:has(> changefreq:contains("daily")) > lastmod do: rewrite_content regex:".*" replace:"BUILD_TIMESTAMP"
+css:url:has(> loc:contains("cleaver.ca/about-me")) > lastmod do: rewrite_content regex:".*" replace:"BUILD_TIMESTAMP"
+css:url:has(> loc:contains("cleaver.ca/projects")) > lastmod do: rewrite_content regex:".*" replace:"BUILD_TIMESTAMP"
+css:url:has(> loc:contains("cleaver.ca/tags")) > lastmod do: rewrite_content regex:".*" replace:"BUILD_TIMESTAMP"
+
 -- blog index
 
 css:main#main-content article.homepage-entry do: rewrite_attr attr:"class" regex:"homepage-entry " replace:""
