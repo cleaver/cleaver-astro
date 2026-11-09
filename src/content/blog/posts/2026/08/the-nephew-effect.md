@@ -1,5 +1,6 @@
 ---
-title: 'The Nephew Effect - Is AI the New Nephew?'
+title: 'The Nephew Effect'
+subtitle: 'Is AI the New Nephew?'
 description: >-
   In the past it was, "My newphew built my website", now it's ChatGPT
 pubDate: '2026-08-22'
