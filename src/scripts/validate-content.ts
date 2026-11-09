@@ -10,7 +10,7 @@ const blogSchema = z.object({
   title: z.string(),
   description: z.string(),
   pubDate: z.string(), // We'll do manual date validation since it's stored as string in frontmatter
-  author: z.string(),
+  author: z.string().default('Cleaver Barnes'),
   tags: z.array(z.string()).default([]),
   heroImage: z.string().optional(),
   heroCaption: z.string().optional(),
